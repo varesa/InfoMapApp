@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 
 public class MapAppActivityMain extends Activity {
@@ -29,6 +30,7 @@ public class MapAppActivityMain extends Activity {
         	Location loc = manager.getLastKnownLocation(provider);
             if(loc != null) {
                 Log.e("fi.dy.esav.MapApp", "Accuracy is: " + loc.getAccuracy());
+                Log.e("fi.dy.esav.MapApp", "The fix is " + ( SystemClock.elapsedRealtimeNanos() - loc.getElapsedRealtimeNanos() ) / 1000000 + "ms old");
             } else {
                 Log.e("fi.dy.esav.MapApp", "No location");
             }
