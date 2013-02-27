@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
 public class MapAppActivityMain extends Activity {
     /**
@@ -24,9 +25,13 @@ public class MapAppActivityMain extends Activity {
     	LocationManager manager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         List<String> providers = manager.getAllProviders();
         for(String provider : providers) {
-        	System.out.println("Available location provider: " + provider);
+            Log.e("fi.dy.esav.MapApp", "Available location provider: " + provider);
         	Location loc = manager.getLastKnownLocation(provider);
-        	//loc.getAccuracy()
+            if(loc != null) {
+                Log.e("fi.dy.esav.MapApp", "Accuracy is: " + loc.getAccuracy());
+            } else {
+                Log.e("fi.dy.esav.MapApp", "No location");
+            }
         	
         }
         
